@@ -34,7 +34,7 @@ client.on('guildMemberAdd', member => {
 client.on('message', (message) => {
   if(message.author.bot)
   return;
-  if(message.channel.name === 'accountant-bot') {
+  if(message.channel.name === 'accountant-bot' || message.channel.type === "dm") {
     let args = message.content.split(/[\s!]+/)
     if(args[0] === 'info') {
       axios.get('https://api.p3c.io/chart/info').then(res => {
@@ -213,7 +213,7 @@ client.on('message', (message) => {
         message.channel.send({embed: {
           color: 0x49b86e,
           title: "Help Command",
-          description: "This can be called to know the list of available comands",
+          description: "This can be called to know the list of available comands can be used in `accountant-bot` channel in p3c or in this private channel",
           fields: [{
             name: "info",
             value: "`info` returns the current supply of P3C, the USD Price, the ETC Price, the ETC Market cap, the ETC market cap, and ETC price in USD"
