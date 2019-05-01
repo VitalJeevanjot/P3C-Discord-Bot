@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot)
   return;
   if(message.channel.name === 'accountant-bot' || message.channel.type === "dm") {
-    let args = message.content.split(/[\s!]+/)
+    let args = message.content.toLowerCase().split(/[\s!]+/)
     if(args[0] === 'info') {
       axios.get('https://api.p3c.io/chart/info').then(res => {
         if(res.data) {
