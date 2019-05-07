@@ -35,6 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot)
   return;
   if(message.channel.name === 'accountant-bot' || message.channel.type === "dm") {
+    let tempArgs = message.content.split(/[\s!]+/)
     let args = message.content.toLowerCase().split(/[\s!]+/)
     if(args[0] === 'info') {
       axios.get('https://api.p3c.io/chart/info').then(res => {
@@ -74,9 +75,38 @@ client.on('message', (message) => {
       }}
       )
     }
+    if(args[0] === 'change') {
+      if(args[1] === 'channel' && args[2]) {
+        axios.get('https://api.p3c.io/tv/use/' + tempArgs[2]).then(res => {
+          if(res.data) {
+          message.channel.send({embed: {
+            color: 0x49b86e,
+            title: "change channel Command",
+            description: res.data.toString() + ' \n ' + ' Now you can go here https://p3c.tv/watch.html',
+          }
+          }).catch(err => {
+            console.log(err);
+          });
+        }}
+        )
+      } else {
+        message.channel.send({embed: {
+            color: 0x49b86e,
+            title: 'Change Channel Command',
+            fields:[{
+              name: "Example : change channel <youtube_watch_id_string>",
+              value: 'change channel qK9OLRbAW30'
+            }]
+          }
+        }).catch(err => {
+          console.log(err);
+        });
+      }
+    }
     if(args[0] === 'crop') {
-      if(args[1] && args[1] !== '') {
-        axios.get('https://api.p3c.io/price/crop/' + args[1]).then((res) => {
+      if(args[1]) {
+        console.log(tempArgs[1]);
+        axios.get('https://api.p3c.io/price/crop/' + tempArgs[1]).then((res) => {
           if(res.data) {
           message.channel.send({embed: {
             color: 0x49b86e,
@@ -149,6 +179,19 @@ client.on('message', (message) => {
             fields:[{
               name: "A tutorial explaining how to claim your airdrop. Takes 3 minutes.",
               value: 'https://forum.saturn.network/t/tutorial-how-to-recieve-a-p3c-io-airdrop-on-your-phone-5-minute-tutorial/4144'
+            }]
+          }
+        }).catch(err => {
+          console.log(err);
+        });
+      }
+      if(args[1] === 'change') {
+        message.channel.send({embed: {
+            color: 0x49b86e,
+            title: 'Help airdrop command',
+            fields:[{
+              name: "change channel ... \n Example : change channel <youtube_watch_id_string>",
+              value: 'change channel qK9OLRbAW30'
             }]
           }
         }).catch(err => {
@@ -245,6 +288,10 @@ client.on('message', (message) => {
           {
             name: "help wiki",
             value: "Return a link of the wiki contains the answers to P3C.."
+          },
+          {
+            name: "change channel Example : change channel <youtube_watch_id_string>",
+            value: 'change channel qK9OLRbAW30 , Change channel at https://p3c.tv/watch.html '
           }]
         }}).catch(err => {
           console.log(err);
