@@ -76,13 +76,13 @@ client.on('message', (message) => {
       )
     }
     if(args[0] === 'change') {
-      if(args[1] === 'channel' && args[2]) {
-        axios.get('https://api.p3c.io/tv/use/' + tempArgs[2]).then(res => {
+      if(args[1] === 'channel' && args[2] && args[3] && args[4]) {
+        axios.get('https://api.p3c.io/tv/use/' + tempArgs[2] + '/' + tempArgs[3] + '/' + tempArgs[4]).then(res => {
           if(res.data) {
           message.channel.send({embed: {
             color: 0x49b86e,
             title: "change channel Command",
-            description: res.data.toString() + ' \n ' + ' Now you can go here https://p3c.tv/watch.html',
+            description: res.data.toString() + ' \n ' + ' Now you can go here https://p3c.tv',
           }
           }).catch(err => {
             console.log(err);
@@ -158,6 +158,7 @@ client.on('message', (message) => {
         }).catch(err => {
           console.log(err);
         });
+        return;
       }
       if(args[1] === 'saturn') {
         message.channel.send({embed: {
@@ -171,6 +172,7 @@ client.on('message', (message) => {
         }).catch(err => {
           console.log(err);
         });
+        return;
       }
       if(args[1] === 'airdrop') {
         message.channel.send({embed: {
@@ -184,19 +186,21 @@ client.on('message', (message) => {
         }).catch(err => {
           console.log(err);
         });
+        return;
       }
       if(args[1] === 'change') {
         message.channel.send({embed: {
             color: 0x49b86e,
-            title: 'Help airdrop command',
+            title: 'Help change channel with tip command',
             fields:[{
-              name: "change channel ... \n Example : change channel <youtube_watch_id_string>",
-              value: 'change channel qK9OLRbAW30'
+              name: "change channel ... \n Example : change channel <youtube_watch_id_string> <TipUSDCents> <Crop_Address>",
+              value: 'change channel qK9OLRbAW30 2 0x340C3e860EFd1956D7E94D78724A1C5d8b0a2D2b'
             }]
           }
         }).catch(err => {
           console.log(err);
         });
+        return;
       }
       if(args[1] === 'wiki') {
         message.channel.send({embed: {
@@ -210,6 +214,7 @@ client.on('message', (message) => {
         }).catch(err => {
           console.log(err);
         });
+        return;
       }
       if(args[1] === 'phone' || args[1] === 'mobile') {
         if (args[2] === 'android') {
@@ -224,8 +229,9 @@ client.on('message', (message) => {
           }).catch(err => {
             console.log(err);
           });
+          return;
         }
-        if (args[2] === 'iphone') {
+        else if (args[2] === 'iphone') {
           message.channel.send({embed: {
               color: 0x49b86e,
               title: 'Help phone iphone command',
@@ -237,6 +243,7 @@ client.on('message', (message) => {
           }).catch(err => {
             console.log(err);
           });
+          return;
         }
         else {
           message.channel.send({embed: {
@@ -250,6 +257,7 @@ client.on('message', (message) => {
           }).catch(err => {
             console.log(err);
           });
+          return;
         }
       }
       else {
@@ -290,8 +298,8 @@ client.on('message', (message) => {
             value: "Return a link of the wiki contains the answers to P3C.."
           },
           {
-            name: "change channel Example : change channel <youtube_watch_id_string>",
-            value: 'change channel qK9OLRbAW30 , Change channel at https://p3c.tv/watch.html '
+            name: "change channel ... \n Example : change channel <youtube_watch_id_string> <TipUSDCents> <Crop_Address>",
+            value: 'change channel Agew5KGUEL4 2 0x340C3e860EFd1956D7E94D78724A1C5d8b0a2D2b'
           }]
         }}).catch(err => {
           console.log(err);
