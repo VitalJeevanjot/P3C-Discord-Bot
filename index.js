@@ -76,8 +76,8 @@ client.on('message', (message) => {
       )
     }
     if(args[0] === 'change') {
-      if(args[1] === 'channel' && args[2] && args[3] && args[4]) {
-        axios.get('https://api.p3c.io/tv/use/' + tempArgs[2] + '/' + tempArgs[3] + '/' + tempArgs[4]).then(res => {
+      if(args[1] === 'channel' && args[2] && args[3]) {
+        axios.get('https://api.p3c.io/tv/use/' + tempArgs[2] + '/' + 2 + '/' + tempArgs[3]).then(res => {
           if(res.data) {
           message.channel.send({embed: {
             color: 0x49b86e,
@@ -94,8 +94,8 @@ client.on('message', (message) => {
             color: 0x49b86e,
             title: 'Change Channel Command',
             fields:[{
-              name: "Example : change channel <youtube_watch_id_string>",
-              value: 'change channel qK9OLRbAW30'
+              name: "change channel ... \n Example : change channel <youtube_watch_id_string> <Crop_Address_Transfer_To>",
+              value: 'change channel Agew5KGUEL4 0x340C3e860EFd1956D7E94D78724A1C5d8b0a2D2b'
             }]
           }
         }).catch(err => {
@@ -193,8 +193,8 @@ client.on('message', (message) => {
             color: 0x49b86e,
             title: 'Help change channel with tip command',
             fields:[{
-              name: "change channel ... \n Example : change channel <youtube_watch_id_string> <TipUSDCents> <Crop_Address>",
-              value: 'change channel qK9OLRbAW30 2 0x340C3e860EFd1956D7E94D78724A1C5d8b0a2D2b'
+              name: "change channel ... \n Example : change channel <youtube_watch_id_string> <Crop_Address_Transfer_To>",
+              value: 'change channel qK9OLRbAW30 0x340C3e860EFd1956D7E94D78724A1C5d8b0a2D2b'
             }]
           }
         }).catch(err => {
@@ -298,8 +298,8 @@ client.on('message', (message) => {
             value: "Return a link of the wiki contains the answers to P3C.."
           },
           {
-            name: "change channel ... \n Example : change channel <youtube_watch_id_string> <TipUSDCents> <Crop_Address>",
-            value: 'change channel Agew5KGUEL4 2 0x340C3e860EFd1956D7E94D78724A1C5d8b0a2D2b'
+            name: "change channel ... \n Example : change channel <youtube_watch_id_string> <Crop_Address_Transfer_To>",
+            value: 'change channel Agew5KGUEL4 0x340C3e860EFd1956D7E94D78724A1C5d8b0a2D2b'
           }]
         }}).catch(err => {
           console.log(err);
